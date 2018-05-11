@@ -1,5 +1,1 @@
-# Build fingerprint
-ifneq ($(BUILD_FINGERPRINT),)
-ADDITIONAL_BUILD_PROPERTIES += \
-    ro.build.fingerprint=$(BUILD_FINGERPRINT)
-endif
+include $(SRC_EVERVOLV_DIR)/build/core/main_version.mk
