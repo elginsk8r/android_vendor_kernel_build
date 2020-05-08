@@ -58,7 +58,8 @@ TRINKET := trinket #SM6125
 UM_4_14_FAMILY := \
     $(MSMSTEPPE) \
     $(TRINKET) \
-    msmnile
+    msmnile \
+    atoll
 
 UM_PLATFORMS := $(UM_3_18_FAMILY) $(UM_4_4_FAMILY) $(UM_4_9_FAMILY) $(UM_4_14_FAMILY)
 QCOM_BOARD_PLATFORMS += $(A_FAMILY) $(B_FAMILY) $(B64_FAMILY) $(BR_FAMILY) $(UM_PLATFORMS)
