@@ -81,3 +81,6 @@ SOONG_CONFIG_evervolvGlobalVars_target_ld_shim_libs := $(subst $(space),:,$(TARG
 SOONG_CONFIG_evervolvGlobalVars_target_process_sdk_version_override := $(TARGET_PROCESS_SDK_VERSION_OVERRIDE)
 SOONG_CONFIG_evervolvGlobalVars_target_surfaceflinger_fod_lib := $(TARGET_SURFACEFLINGER_FOD_LIB)
 SOONG_CONFIG_evervolvQcomVars_qcom_soong_namespace := $(if $(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),$(QCOM_SOONG_NAMESPACE),)
+ifneq ($(TARGET_USE_QTI_BT_STACK),true)
+PRODUCT_SOONG_NAMESPACES += packages/apps/Bluetooth
+endif #TARGET_USE_QTI_BT_STACK

@@ -29,6 +29,12 @@ PRODUCT_SOONG_NAMESPACES += \
     $(call project-path-for,qcom-dataservices) \
     $(QCOM_SOONG_NAMESPACE)
 
+ifeq ($(TARGET_USE_QTI_BT_STACK),true)
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/qcom/opensource/commonsys/packages/apps/Bluetooth \
+    vendor/qcom/opensource/commonsys/system/bt/conf
+endif #TARGET_USE_QTI_BT_STACK
+
 PRODUCT_CFI_INCLUDE_PATHS += \
     hardware/qcom-caf/wlan/qcwcn/wpa_supplicant_8_lib
 
