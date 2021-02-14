@@ -327,7 +327,7 @@ stagefright_qcom_legacy {
 soong_config_module_type {
     name: "librmnetctl_pre_uplink",
     module_type: "cc_defaults",
-    config_namespace: "lineageQcomVars",
+    config_namespace: "evervolvQcomVars",
     bool_variables: ["uses_pre_uplink_features_netmgrd"],
     properties: ["cflags"],
 }
