@@ -18,10 +18,18 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/ev_arm.mk \
     $(LOCAL_DIR)/ev_arm64.mk \
     $(LOCAL_DIR)/ev_x86.mk \
-    $(LOCAL_DIR)/ev_x86_64.mk
+    $(LOCAL_DIR)/ev_x86_64.mk \
+    $(LOCAL_DIR)/ev_arm_ab.mk \
+    $(LOCAL_DIR)/ev_arm64_ab.mk \
+    $(LOCAL_DIR)/ev_x86_ab.mk \
+    $(LOCAL_DIR)/ev_x86_64_ab.mk
 
 COMMON_LUNCH_CHOICES := \
     ev_arm-userdebug \
     ev_arm64-userdebug \
     ev_x86-userdebug \
-    ev_x86_64-userdebug
+    ev_x86_64-userdebug \
+    ev_arm_ab-userdebug \
+    ev_arm64_ab-userdebug \
+    ev_x86_ab-userdebug \
+    ev_x86_64_ab-userdebug

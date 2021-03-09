@@ -13,6 +13,7 @@
 # limitations under the License.
 
 $(call inherit-product, build/target/product/aosp_arm.mk)
+$(call inherit-product, build/target/product/gsi_release.mk)
 
 include $(SRC_EVERVOLV_DIR)/build/target/product/evervolv.mk
 

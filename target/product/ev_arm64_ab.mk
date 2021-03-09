@@ -12,12 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, build/target/product/aosp_x86_64.mk)
-$(call inherit-product, build/target/product/gsi_release.mk)
+$(call inherit-product, build/target/product/aosp_arm64_ab.mk)
 
 include $(SRC_EVERVOLV_DIR)/build/target/product/evervolv.mk
 
-PRODUCT_NAME := ev_x86_64
+TARGET_NO_KERNEL_OVERRIDE := true
 
-PRODUCT_SDK_ADDON_NAME := evervolv
-PRODUCT_SDK_ADDON_SYS_IMG_SOURCE_PROP := $(LOCAL_PATH)/source.properties
+PRODUCT_NAME := ev_arm64_ab
