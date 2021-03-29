@@ -436,3 +436,45 @@ function fixup_common_out_dir() {
         mkdir -p ${common_out_dir}
     fi
 }
+
+function update_aosp_tag() # <Tag>
+{
+    if [ -z "$1" ]; then
+        echo "Usage: update_aosp_tag <aosp-tag>"
+        return
+    fi
+
+    T=$(gettop)
+    cd $T/.repo/manifests
+    git pull https://android.googlesource.com/platform/manifest refs/tags/$AOSP_TAG
+
+    echo "Correct any errors to the manifest, press 'c' to continue"
+    while : ; do
+    read -n 1 k <&1
+    if [[ $k = c ]] ; then
+        echo "Sync the updated manifest"
+        cd $T
+        repo sync -c --force-sync -j$(nproc --all)
+
+        echo "Start pulling updates to our forked repos"
+        local AOSP_REPOS=$(cat $T/android/snippets/aosp.xml | grep 'remote="evervolv"' | awk '{print $2}' | awk -F '"' '{print $2}')
+        for dir in ${AOSP_REPOS}; do
+            cd $T/${dir}
+            case ${dir} in
+            packages/apps/PermissionController)
+                git pull https://android.googlesource.com/platform/packages/apps/PackageInstaller refs/tags/$AOSP_TAG
+            ;;
+            prebuilts/* | packages/apps/Gallery2)
+            ;;
+            *)
+                aospremote
+                git pull aosp refs/tags/$AOSP_TAG
+            ;;
+            esac
+        done
+    fi
+    done
+
+    echo "Update complete, fix any conflicts present after merging"
+    cd $T
+}
