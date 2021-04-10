@@ -42,6 +42,8 @@ SOONG_CONFIG_evervolvQcomVars += \
     device_support_hw_fde \
     device_support_hw_fde_perf \
     legacy_hw_disk_encryption \
+    supports_audio_accessory \
+    supports_debug_accessory \
     uses_pre_uplink_features_netmgrd \
     uses_qcom_bsp_legacy \
     uses_qti_camera_device
@@ -63,6 +65,8 @@ TARGET_LEGACY_HW_DISK_ENCRYPTION ?= false
 TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD ?= false
 TARGET_USES_QCOM_BSP_LEGACY ?= false
 TARGET_USES_QTI_CAMERA_DEVICE ?= false
+TARGET_QTI_USB_SUPPORTS_AUDIO_ACCESSORY ?= false
+TARGET_QTI_USB_SUPPORTS_DEBUG_ACCESSORY ?= false
 
 # Soong bool variables
 SOONG_CONFIG_evervolvGlobalVars_disable_postrender_cleanup := $(TARGET_DISABLE_POSTRENDER_CLEANUP)
@@ -72,6 +76,8 @@ SOONG_CONFIG_evervolvQcomVars_device_support_wait_for_qsee := $(TARGET_KEYMASTER
 SOONG_CONFIG_evervolvQcomVars_device_support_hw_fde := $(TARGET_HW_DISK_ENCRYPTION)
 SOONG_CONFIG_evervolvQcomVars_device_support_hw_fde_perf := $(TARGET_HW_DISK_ENCRYPTION_PERF)
 SOONG_CONFIG_evervolvQcomVars_legacy_hw_disk_encryption := $(TARGET_LEGACY_HW_DISK_ENCRYPTION)
+SOONG_CONFIG_evervolvQcomVars_supports_audio_accessory := $(TARGET_QTI_USB_SUPPORTS_AUDIO_ACCESSORY)
+SOONG_CONFIG_evervolvQcomVars_supports_debug_accessory := $(TARGET_QTI_USB_SUPPORTS_DEBUG_ACCESSORY)
 SOONG_CONFIG_evervolvQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
 SOONG_CONFIG_evervolvQcomVars_uses_qcom_bsp_legacy := $(TARGET_USES_QCOM_BSP_LEGACY)
 SOONG_CONFIG_evervolvQcomVars_uses_qti_camera_device := $(TARGET_USES_QTI_CAMERA_DEVICE)
