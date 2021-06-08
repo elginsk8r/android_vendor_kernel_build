@@ -76,7 +76,7 @@ function aospremote() {
     if [ ! "$ANDROID_BUILD_TOP" ]; then
         export ANDROID_BUILD_TOP=$(gettop)
     fi
-    local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
+    local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##; s#PermissionController#PackageInstaller#")
     # Google moved the repo location in Oreo
     if [ $PROJECT = "build/make" ]
     then
@@ -101,7 +101,7 @@ function cafremote()
     if [ ! "$ANDROID_BUILD_TOP" ]; then
         export ANDROID_BUILD_TOP=$(gettop)
     fi
-    local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
+    local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##; s#PermissionController#PackageInstaller#; s#Gallery2#SnapdragonGallery#; s#Snap\$#SnapdragonCamera#")
     # Google moved the repo location in Oreo
     if [ $PROJECT = "build/make" ]
     then
