@@ -454,25 +454,23 @@ function update_aosp_tag() # <Tag>
         echo "Sync the updated manifest"
         cd $T
         repo sync -c --force-sync -j$(nproc --all)
+
+        echo "Start pulling updates to our forked repos"
+        local AOSP_REPOS=$(cat $T/android/snippets/aosp.xml | grep 'remote="evervolv"' | awk '{print $2}' | awk -F '"' '{print $2}')
+        for dir in ${AOSP_REPOS}; do
+            cd $T/${dir}
+            case ${dir} in
+            prebuilts/* | packages/apps/Gallery2)
+            ;;
+            *)
+                aospremote
+                git pull aosp refs/tags/$1
+            ;;
+            esac
+        done
+
+        echo "Update complete, fix any conflicts present after merging"
+        cd $T
+        return
     fi
-
-    echo "Start pulling updates to our forked repos"
-    local AOSP_REPOS=$(cat $T/android/snippets/aosp.xml | grep 'remote="evervolv"' | awk '{print $2}' | awk -F '"' '{print $2}')
-    for dir in ${AOSP_REPOS}; do
-        cd $T/${dir}
-        case ${dir} in
-        packages/apps/PermissionController)
-            git pull https://android.googlesource.com/platform/packages/apps/PackageInstaller refs/tags/$1
-        ;;
-        prebuilts/* | packages/apps/Gallery2)
-        ;;
-        *)
-            aospremote
-            git pull aosp refs/tags/$1
-        ;;
-        esac
-    done
-
-    echo "Update complete, fix any conflicts present after merging"
-    cd $T
 }
