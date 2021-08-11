@@ -474,3 +474,6 @@ function update_aosp_tag() # <Tag>
         return
     fi
 }
+
+# Add hooks from repo
+git config --global core.hooksPath $(gettop)/.repo/repo/hooks
