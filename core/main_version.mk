@@ -4,7 +4,8 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.build.fingerprint=$(BUILD_FINGERPRINT)
 endif
 
-ifeq ($(PRODUCT_OVERRIDE_INFO),true)
+# Override fingerprint for Google Play Services and SafetyNet
+ifneq ($(PRODUCT_OVERRIDE_FINGERPRINT),)
 ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.build.stock_fingerprint=$(PRODUCT_OVERRIDE_FINGERPRINT)
 endif
