@@ -35,7 +35,6 @@
 #   KERNEL_TOOLCHAIN                   = Path to toolchain, if unset, assumes
 #                                          TARGET_KERNEL_CROSS_COMPILE_PREFIX
 #                                          is in PATH
-#   USE_CCACHE                         = Enable ccache (global Android flag)
 
 BUILD_TOP := $(shell pwd)
 
@@ -82,17 +81,10 @@ endif
 # for tools like `as`
 KERNEL_TOOLCHAIN_PATH_gcc := $(KERNEL_TOOLCHAIN_$(KERNEL_ARCH))/$(KERNEL_TOOLCHAIN_PREFIX_$(KERNEL_ARCH))
 
-ifneq ($(USE_CCACHE),)
-    ifneq ($(CCACHE_EXEC),)
-        # Android 10+ deprecates use of a build ccache. Only system installed ones are now allowed
-        CCACHE_BIN := $(CCACHE_EXEC)
-    endif
-endif
-
 ifeq ($(TARGET_KERNEL_CLANG_COMPILE),true)
     KERNEL_CROSS_COMPILE := CROSS_COMPILE="$(KERNEL_TOOLCHAIN_PATH)"
 else
-    KERNEL_CROSS_COMPILE := CROSS_COMPILE="$(CCACHE_BIN) $(KERNEL_TOOLCHAIN_PATH)"
+    KERNEL_CROSS_COMPILE := CROSS_COMPILE="$(CCACHE_EXEC) $(KERNEL_TOOLCHAIN_PATH)"
 endif
 
 # Needed for CONFIG_COMPAT_VDSO, safe to set for all arm64 builds
