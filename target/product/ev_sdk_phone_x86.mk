@@ -16,6 +16,9 @@ $(call inherit-product, build/target/product/sdk_phone_x86.mk)
 
 include $(SRC_EVERVOLV_DIR)/build/target/product/evervolv.mk
 
+# Enable mainline checking
+PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
+
 # Overrides
 PRODUCT_NAME := ev_sdk_phone_x86
 PRODUCT_MODEL := Evervolv Android SDK built for x86

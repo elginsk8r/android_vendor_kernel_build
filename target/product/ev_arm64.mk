@@ -19,4 +19,7 @@ include $(SRC_EVERVOLV_DIR)/build/target/product/evervolv.mk
 
 TARGET_NO_KERNEL_OVERRIDE := true
 
+# Enable mainline checking
+PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
+
 PRODUCT_NAME := ev_arm64

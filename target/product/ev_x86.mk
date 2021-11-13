@@ -19,6 +19,9 @@ include $(SRC_EVERVOLV_DIR)/build/target/product/evervolv.mk
 
 TARGET_USES_64_BIT_BINDER := true
 
+# Enable mainline checking
+PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
+
 PRODUCT_NAME := ev_x86
 
 PRODUCT_SDK_ADDON_NAME := evervolv

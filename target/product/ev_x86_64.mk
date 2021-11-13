@@ -17,6 +17,9 @@ $(call inherit-product, build/target/product/gsi_release.mk)
 
 include $(SRC_EVERVOLV_DIR)/build/target/product/evervolv.mk
 
+# Enable mainline checking
+PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
+
 PRODUCT_NAME := ev_x86_64
 
 PRODUCT_SDK_ADDON_NAME := evervolv
