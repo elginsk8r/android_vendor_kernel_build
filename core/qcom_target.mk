@@ -29,6 +29,12 @@ PRODUCT_SOONG_NAMESPACES += \
     $(call project-path-for,qcom-dataservices) \
     $(QCOM_SOONG_NAMESPACE)
 
+ifneq (,$(findstring AntHalService-Soong,$(PRODUCT_PACKAGES)))
+PRODUCT_SOONG_NAMESPACES += external/ant-wireless/ant_client
+else ifneq (,$(findstring AntHalService,$(PRODUCT_PACKAGES)))
+PRODUCT_SOONG_NAMESPACES += external/ant-wireless/ant_service
+endif
+
 ifeq ($(TARGET_USE_QTI_BT_STACK),true)
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys/packages/apps/Bluetooth \
