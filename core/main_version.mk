@@ -11,9 +11,13 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
 endif
 
 ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.evervolv.display.version=$(EV_VERSION) \
-    ro.evervolv.device=$(EV_CODENAME) \
-    ro.evervolv.version=$(TARGET_OTA_PACKAGE_NAME)
+    ro.evervolv.device=$(TARGET_DEVICE) \
+    ro.evervolv.releasetype=$(EV_BUILD_TYPE) \
+    ro.evervolv.version=$(EV_VERSION)
+
+ADDITIONAL_SYSTEM_PROPERTIES += \
+    ro.evervolv.build.version.plat.sdk=$(EV_PLATFORM_SDK_VERSION) \
+    ro.evervolv.build.version.plat.rev=$(EV_PLATFORM_REV)
 
 ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.evervolv.build.version.plat.sdk=$(EV_PLATFORM_SDK_VERSION) \
