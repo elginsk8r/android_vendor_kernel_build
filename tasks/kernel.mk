@@ -414,9 +414,7 @@ kerneltags: $(KERNEL_CONFIG)
 .PHONY: kernelsavedefconfig alldefconfig
 
 kernelsavedefconfig: $(KERNEL_OUT)
-	$(call make-kernel-target,$(KERNEL_DEFCONFIGS))
-	env KCONFIG_NOTIMESTAMP=true \
-		 $(call make-kernel-target,savedefconfig)
+	$(call make-kernel-config,$(KERNEL_OUT),$(KERNEL_DEFCONFIGS))
 	cp $(KERNEL_OUT)/defconfig $(KERNEL_DEFCONFIG_SRC)
 
 alldefconfig: $(KERNEL_OUT)
