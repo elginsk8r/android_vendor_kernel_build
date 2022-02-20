@@ -12,7 +12,7 @@ endef
 
 QC_OPEN_PATH := vendor/qcom/opensource
 
-ifeq ($(BOARD_USES_QTI_HARDWARE),true)
+ifeq ($(call is-board-platform-in-list, $(QCOM_BOARD_PLATFORMS)),true)
 
 $(call set-device-specific-path,AUDIO,audio,hardware/qcom-caf/$(QCOM_HARDWARE_VARIANT)/audio)
 $(call set-device-specific-path,DISPLAY,display,hardware/qcom-caf/$(QCOM_HARDWARE_VARIANT)/display)

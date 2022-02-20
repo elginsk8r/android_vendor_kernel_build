@@ -1,15 +1,3 @@
-# Bring in Qualcomm helper macros
-A_FAMILY := msm7x27a msm7x30 msm8660 msm8960
-B_FAMILY := msm8226 msm8610 msm8974
-B64_FAMILY := msm8992 msm8994
-BR_FAMILY := msm8909 msm8916
-UM_3_18_FAMILY := msm8937 msm8953 msm8996
-UM_4_4_FAMILY := msm8998 sdm660
-UM_4_9_FAMILY := sdm845 sdm710
-UM_4_14_FAMILY := msmnile sm6150
-UM_PLATFORMS := $(UM_3_18_FAMILY) $(UM_4_4_FAMILY) $(UM_4_9_FAMILY) $(UM_4_14_FAMILY)
-QSSI_SUPPORTED_PLATFORMS := $(UM_4_9_FAMILY) $(UM_4_14_FAMILY)
-
 BOARD_USES_ADRENO := true
 
 # UM platforms no longer need this set on O+
@@ -65,12 +53,6 @@ TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 21)
 ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY),$(TARGET_BOARD_PLATFORM)),)
     TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 27)
 endif
-
-# List of targets that use master side content protection
-MASTER_SIDE_CP_TARGET_LIST := msm8996 msm8998 sdm660 sdm845 sm6150 msmnile
-
-# Every qcom platform is considered a vidc target
-MSM_VIDC_TARGET_LIST := $(TARGET_BOARD_PLATFORM)
 
 ifneq ($(filter $(A_FAMILY),$(TARGET_BOARD_PLATFORM)),)
     QCOM_HARDWARE_VARIANT := msm8960
