@@ -32,10 +32,6 @@ MSM7K_BOARD_PLATFORMS += \
     msm7x27a \
     msm7k
 
-# QSD8K Family
-QSD8K_BOARD_PLATFORMS += \
-    qsd8k
-
 # UM Families
 UM_3_18_FAMILY := \
     msm8937 \
