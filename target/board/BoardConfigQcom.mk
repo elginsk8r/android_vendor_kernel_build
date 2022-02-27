@@ -28,15 +28,6 @@ endif
 # Tell HALs that we're compiling an AOSP build with an in-line kernel
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 
-ifeq ($(call is-board-platform-in-list, $(A_FAMILY)),true)
-    # Enable legacy audio functions
-    ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
-        ifneq ($(filter msm8960,$(TARGET_BOARD_PLATFORM)),)
-            USE_CUSTOM_AUDIO_POLICY := 1
-        endif
-    endif
-endif
-
 # Enable media extensions
 TARGET_USES_MEDIA_EXTENSIONS := true
 

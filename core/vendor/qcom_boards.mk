@@ -2,8 +2,6 @@
 
 # A Family
 A_FAMILY := \
-    msm7x27a \
-    msm7x30 \
     msm8660 \
     msm8960
 
@@ -24,13 +22,6 @@ BR_FAMILY := \
     msm8909 \
     msm8916 \
     msm8952
-
-# MSM7000 Family
-MSM7K_BOARD_PLATFORMS += \
-    msm7x30 \
-    msm7x27 \
-    msm7x27a \
-    msm7k
 
 # UM Families
 UM_3_18_FAMILY := \
