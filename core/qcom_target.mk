@@ -31,18 +31,6 @@ PRODUCT_SOONG_NAMESPACES += \
     $(call project-path-for,qcom-dataservices) \
     $(QCOM_SOONG_NAMESPACE)
 
-ifneq (,$(findstring AntHalService-Soong,$(PRODUCT_PACKAGES)))
-PRODUCT_SOONG_NAMESPACES += external/ant-wireless/ant_client
-else ifneq (,$(findstring AntHalService,$(PRODUCT_PACKAGES)))
-PRODUCT_SOONG_NAMESPACES += external/ant-wireless/ant_service
-endif
-
-ifeq ($(TARGET_USE_QTI_BT_STACK),true)
-PRODUCT_SOONG_NAMESPACES += \
-    $(QC_OPEN_PATH)/commonsys/packages/apps/Bluetooth \
-    $(QC_OPEN_PATH)/commonsys/system/bt/conf
-endif #TARGET_USE_QTI_BT_STACK
-
 # Add display-commonsys-intf to PRODUCT_SOONG_NAMESPACES for QSSI supported platforms
 ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
 PRODUCT_SOONG_NAMESPACES += \
