@@ -14,13 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-EVERVOLV_SRC_API_DIR := $(TOPDIR)prebuilts/evervolv-sdk/api
-INTERNAL_EVERVOLV_PLATFORM_API_FILE := $(TARGET_OUT_COMMON_INTERMEDIATES)/PACKAGING/evervolv_public_api.txt
-INTERNAL_EVERVOLV_PLATFORM_REMOVED_API_FILE := $(TARGET_OUT_COMMON_INTERMEDIATES)/PACKAGING/evervolv_removed.txt
-FRAMEWORK_EVERVOLV_PLATFORM_API_FILE := $(SRC_EVERVOLV_DIR)/sdk/api/evervolv_current.txt
-FRAMEWORK_EVERVOLV_PLATFORM_REMOVED_API_FILE := $(SRC_EVERVOLV_DIR)/sdk/api/evervolv_removed.txt
-FRAMEWORK_EVERVOLV_API_NEEDS_UPDATE_TEXT := $(SRC_EVERVOLV_DIR)/build/core/apicheck_msg_current.txt
-
 # Rules for QCOM targets
 include $(SRC_EVERVOLV_DIR)/build/core/qcom_target.mk
 
