@@ -5,6 +5,11 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
 endif
 
 # Override fingerprint for Google Play Services and SafetyNet
+ifneq (,$(findstring $(BUILD_ID),$(BUILD_FINGERPRINT)))
+PRODUCT_OVERRIDE_FINGERPRINT := $(BUILD_FINGERPRINT)
+endif
+PRODUCT_OVERRIDE_FINGERPRINT ?= google/raven/raven:12/SP2A.220405.004/8233519:user/release-keys
+
 ifneq ($(PRODUCT_OVERRIDE_FINGERPRINT),)
 ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.build.stock_fingerprint=$(PRODUCT_OVERRIDE_FINGERPRINT)
