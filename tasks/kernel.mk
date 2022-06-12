@@ -422,40 +422,47 @@ endif # BOARD_INCLUDED_DTBO
 DTBOFILES ?= $(shell find $(DTBO_OUT)/arch/$(KERNEL_ARCH)/boot/dts -type f -name "*.dtbo" | sort)
 MKDTIMG := $(HOST_OUT_EXECUTABLES)/mkdtimg$(HOST_EXECUTABLE_SUFFIX)
 MKDTBOIMG := $(HOST_OUT_EXECUTABLES)/mkdtboimg.py$(HOST_EXECUTABLE_SUFFIX)
-$(BOARD_PREBUILT_DTBOIMAGE): $(DTC) $(MKDTIMG) $(MKDTBOIMG)
-ifeq ($(BOARD_KERNEL_SEPARATED_DTBO),true)
+
+$(DTBO_OUT):
+	mkdir -p $(DTBO_OUT)
+
+$(BOARD_PREBUILT_DTBOIMAGE): $(DTC) $(MKDTIMG) $(MKDTBOIMG) $(DTBO_OUT)
 $(BOARD_PREBUILT_DTBOIMAGE):
 	@echo "Building dtbo.img"
-	rm -rf $(DTBO_OUT)
-	$(call make-kernel-config,$(DTBO_OUT),$(KERNEL_DEFCONFIGS))
+	$(hide) find $(DTBO_OUT)/arch/$(KERNEL_ARCH)/boot/dts -type f -name "*.dtbo" | xargs rm -f
+	$(call make-dtbo-target,$(KERNEL_DEFCONFIGS))
+ifeq ($(BOARD_KERNEL_SEPARATED_DTBO),true)
 	$(call make-dtbo-target,dtbs)
 ifdef BOARD_DTBO_CFG
 	$(MKDTBOIMG) cfg_create $@ $(BOARD_DTBO_CFG) -d $(DTBO_OUT)/arch/$(KERNEL_ARCH)/boot/dts
 else
 	$(MKDTBOIMG) create $@ --page_size=$(BOARD_KERNEL_PAGESIZE) $(DTBOFILES)
-endif
+endif # BOARD_DTBO_CFG
 else
-$(BOARD_PREBUILT_DTBOIMAGE):
-	@echo "Building dtbo.img"
-	$(call make-kernel-config,$(DTBO_OUT),$(KERNEL_DEFCONFIGS))
 	$(call make-dtbo-target,dtbo.img)
 endif # BOARD_KERNEL_SEPARATED_DTBO
+	$(hide) touch -c $(DTBO_OUT)
 endif # BOARD_CUSTOM_DTBOIMG_MK
 endif # TARGET_NEEDS_DTBOIMAGE/BOARD_KERNEL_SEPARATED_DTBO
 
 ifeq ($(BOARD_INCLUDE_DTB_IN_BOOTIMG),true)
 ifeq ($(BOARD_PREBUILT_DTBIMAGE_DIR),)
+$(DTB_OUT):
+	mkdir -p $(DTB_OUT)
+
 ifneq ($(BOARD_INCLUDED_DTB),)
 $(foreach dtb,$(BOARD_INCLUDED_DTB), \
 	$(eval DTBFILES += $(DTB_OUT)/arch/$(KERNEL_ARCH)/boot/dts/$(dtb)))
 endif # BOARD_INCLUDED_DTB
 DTBFILES ?= $(shell find $(DTB_OUT)/arch/$(KERNEL_ARCH)/boot/dts -type f -name "*.dtb" | sort)
-$(INSTALLED_DTBIMAGE_TARGET): $(DTC)
+
+$(INSTALLED_DTBIMAGE_TARGET): $(DTC) $(DTB_OUT)
 	@echo "Building dtb.img"
-	rm -rf $(DTB_OUT)
-	$(call make-kernel-config,$(DTB_OUT),$(KERNEL_DEFCONFIGS))
+	$(hide) find $(DTB_OUT)/arch/$(KERNEL_ARCH)/boot/dts -type f -name "*.dtb" | xargs rm -f
+	$(call make-dtb-target,$(KERNEL_DEFCONFIG))
 	$(call make-dtb-target,dtbs)
 	cat $(DTBFILES) > $@
+	$(hide) touch -c $(DTB_OUT)
 endif # !BOARD_PREBUILT_DTBIMAGE_DIR
 endif # BOARD_INCLUDE_DTB_IN_BOOTIMG
 
