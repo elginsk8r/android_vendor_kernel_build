@@ -115,7 +115,7 @@ function cafremote()
     then
         local PFX="platform/"
     fi
-    git remote add caf https://source.codeaurora.org/quic/la/$PFX$PROJECT
+    git remote add caf https://git.codelinaro.org/clo/la/$PFX$PROJECT
     echo "Remote 'caf' created"
 }
 export -f cafremote
