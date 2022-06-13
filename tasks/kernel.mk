@@ -436,7 +436,11 @@ ifeq ($(BOARD_KERNEL_SEPARATED_DTBO),true)
 ifdef BOARD_DTBO_CFG
 	$(MKDTBOIMG) cfg_create $@ $(BOARD_DTBO_CFG) -d $(DTBO_OUT)/arch/$(KERNEL_ARCH)/boot/dts
 else
+ifdef BOARD_KERNEL_PAGESIZE
 	$(MKDTBOIMG) create $@ --page_size=$(BOARD_KERNEL_PAGESIZE) $(DTBOFILES)
+else
+	$(MKDTBOIMG) create $@ $(DTBOFILES)
+endif # BOARD_KERNEL_PAGESIZE
 endif # BOARD_DTBO_CFG
 else
 	$(call make-dtbo-target,dtbo.img)
